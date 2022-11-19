@@ -1,0 +1,12 @@
+---
+- hosts: all
+  user: nodes
+  become: yes
+  connection: ssh
+  tasks:
+  - name: install httpd/apache2 for Debian
+    command: apt-get -y install apache2
+    when: ansible_os_family== "Debian"
+  - name: install httpd/apache2 for RedHat
+    command: yum -y install apache2
+    when: ansible_os_family== "RedHat"
